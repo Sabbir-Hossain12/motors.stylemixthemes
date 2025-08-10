@@ -97,6 +97,13 @@
                                     value="{{ $webinfo->usd_rate }}" id="floatingPassword" placeholder="Phone Two">
                                 <label for="floatingPassword">1 USD TO BDT</label>
                             </div>
+
+                            <div class="mb-3 form-floating">
+                                <textarea class="form-control ckeditor" placeholder="Office Hours" name="office_hours" id="floatingTextarea" style="height: 100px;">{{ $webinfo->office_hours ?? '' }}</textarea>
+                                <label for="floatingTextarea">Office Hours</label>
+                            </div>
+
+
                             <div class="mb-3">
                                 <input class="form-control form-control-lg bg-dark" name="logo" id="formFileLg"
                                     type="file">
@@ -311,5 +318,11 @@
 
     </div>
 </div>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.ckeditor').ckeditor();
+    });
+</script>
 
 @endsection

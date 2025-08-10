@@ -14,7 +14,9 @@ class HeroController extends Controller
      */
     public function index()
     {
-        return view('backend.content.heroes.index');
+        $hero = Hero::first();
+
+        return view('backend.content.heroes.index',compact('hero'));
     }
 
     /**
@@ -44,14 +46,12 @@ class HeroController extends Controller
             $file = $request->file('bg_img');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('public/images/hero/', $filename);
-            $hero->bg_img = $filename;
+            $hero->bg_img = 'public/images/hero/' .$filename;
         }
 
         $hero->save();
 
         return redirect()->back()->with('message','Hero Created Successfully.');
-
-
 
     }
 
@@ -97,7 +97,7 @@ class HeroController extends Controller
             $file = $request->file('bg_img');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move('public/images/hero/', $filename);
-            $hero->bg_img = $filename;
+            $hero->bg_img = 'public/images/hero/' .$filename;
         }
 
         $hero->save();

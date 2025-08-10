@@ -78,39 +78,40 @@
         <div class="row">
             <!-- Column 1 -->
             <div class="col-md-3">
-                <h6><span style="color:#4c8cf5;">MOTORS</span> DEALERSHIP</h6>
-                <p>
-                    As the leading dealer in Chicago, we are confident that we will save you time and money. Motors is
-                    ultimate Automotive, Car Dealer WordPress theme.
-                </p>
+                <h6>{{ env('APP_NAME') }}</h6>
+                <div class="photo-gallery d-flex flex-wrap">
+                    <a href="{{ url('/') }}">   <img src="{{ asset($basicinfo->logo) }}" alt="" style="width: 138px"> </a>
+                    {{--                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/04-12-150x150.jpg" alt="">--}}
+                    {{--                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/03-25-150x150.jpg" alt="">--}}
+                    {{--                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/01-25-150x150.jpg" alt="">--}}
+                </div>
             </div>
+
+
 
             <!-- Column 2 -->
             <div class="col-md-3">
-                <h6>PHOTO GALLERY</h6>
-                <div class="photo-gallery d-flex flex-wrap">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/06-150x150.jpg" alt="">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/04-12-150x150.jpg" alt="">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/03-25-150x150.jpg" alt="">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/01-25-150x150.jpg" alt="">
-                </div>
+                <h6><span style="color:#4c8cf5;">{{ env('APP_NAME') }}</span></h6>
+                <p>
+                    {{ $basicinfo->address }}
+                </p>
             </div>
 
             <!-- Column 3 -->
             <div class="col-md-3">
                 <h6>LATEST BLOG POSTS</h6>
                 <p>The Tesla Model S isn’t the first truly autonomous car on the road...</p>
-                <a href="#"><i class="fa-regular fa-comments"></i> No Comments</a>
+{{--                <a href="#"><i class="fa-regular fa-comments"></i> No Comments</a>--}}
             </div>
 
             <!-- Column 4 -->
             <div class="col-md-3">
                 <h6>SOCIAL NETWORK</h6>
                 <div class="social-icons mt-2">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="{{ $basicinfo->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{ $basicinfo->instagram }}"><i class="fab fa-instagram"></i></a>
+                    <a href="{{ $basicinfo->linkedin }}"><i class="fab fa-tiktok"></i></a>
+                    <a href="{{ $basicinfo->youtube }}"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -130,31 +131,81 @@
 
             <!-- Sales Hours -->
             <div class="col-md-3">
-                <h6>SALES HOURS</h6>
-                <p><strong>Monday - Friday:</strong> 09:00AM - 09:00PM</p>
-                <p><strong>Saturday:</strong> 09:00AM - 07:00PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
+                <h6>Pages</h6>
+                <a href="{{ url('venture/about_us') }}"><p>About Us</p></a>
+                <a href="{{ url('venture/contact_us') }}"><p>Contact Us</p></a>
+                <a href="{{ url('venture/privacy_policy') }}"><p>Terms and conditions</p></a>
+                <a href="{{ url('venture/faq') }}"><p>Faqs</p></a>
             </div>
 
             <!-- Service Hours -->
             <div class="col-md-3">
-                <h6>SERVICE HOURS</h6>
-                <p><strong>Monday - Friday:</strong> 09:00AM - 09:00PM</p>
-                <p><strong>Saturday:</strong> 09:00AM - 07:00PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
+                <h6>Shipping Info</h6>
+                <p><strong>Delivery Inside Dhaka:</strong> {{ $basicinfo->inside_dhaka_charge }}</p>
+                <p><strong>Delivery Outside Dhaka:</strong> {{ $basicinfo->outside_dhaka_charge }}</p>
+
             </div>
 
             <!-- Parts Hours -->
             <div class="col-md-3">
-                <h6>PARTS HOURS</h6>
-                <p><strong>Monday - Friday:</strong> 09:00AM - 09:00PM</p>
-                <p><strong>Saturday:</strong> 09:00AM - 07:00PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
+                <h6>Support Hours</h6>
+                {!! $basicinfo->office_hours ?? '' !!}
             </div>
         </div>
 
         <div class="footer-bottom mt-4 text-center">
-            Copyright © 2021. Motors – WordPress Theme by StylemixThemes
+            Copyright © 2025. {{ env('APP_NAME') }} – Developed by <a href="https://danpitetech.com/"> Danpite.Tech </a>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Disable dropdowns on desktop (keep them clickable on mobile)
+            if (window.innerWidth >= 768) {
+                document.querySelectorAll('.dropdown-toggle').forEach(function (el) {
+                    el.removeAttribute('data-bs-toggle');
+                    el.removeAttribute('data-bs-target');
+                });
+            }
+
+            // Handle icon change when collapsing/expanding
+            document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(function (toggle) {
+                const targetId = toggle.getAttribute('data-bs-target');
+                const collapseEl = document.querySelector(targetId);
+
+                if (collapseEl) {
+                    collapseEl.addEventListener('show.bs.collapse', function () {
+                        toggle.querySelector('span').innerHTML = '&darr;';
+                    });
+                    collapseEl.addEventListener('hide.bs.collapse', function () {
+                        toggle.querySelector('span').innerHTML = '&rsaquo;';
+                    });
+                }
+            });
+
+        });
+
+            const menuToggle = document.querySelector(".mobile-menu-toggle");
+            const mobileMenu = document.querySelector("#mobileMenu");
+            const closeBtn = document.querySelector(".close-mobile-menu");
+
+            menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.add("open");
+        });
+
+            closeBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("open");
+        });
+
+            // Optional: close menu when clicking outside
+            document.addEventListener("click", (e) => {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            mobileMenu.classList.remove("open");
+        }
+        });
+
+
+
+    </script>
 </footer>

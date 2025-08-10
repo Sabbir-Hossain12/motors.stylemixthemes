@@ -15,7 +15,9 @@ class PromoSectionController extends Controller
 
     public function index()
     {
-        return view('backend.content.promo-section.index');
+        $promoSection = PromoSection::first();
+
+        return view('backend.content.promo-section.index', compact('promoSection'));
     }
 
     /**
@@ -42,7 +44,7 @@ class PromoSectionController extends Controller
         $promoSection->icon_1 = $request->icon_1;
 
         $promoSection->title_2 = $request->title_2;
-        $promoSection->desc_2 = $request->desc_2
+        $promoSection->desc_2 = $request->desc_2;
         $promoSection->icon_2 = $request->icon_2;
 
         if ($request->hasFile('bg_img')) {
@@ -50,7 +52,7 @@ class PromoSectionController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move('public/images/promo-section/', $filename);
-            $promoSection->bg_img = $filename;
+            $promoSection->bg_img = 'public/images/promo-section/'. $filename;
         }
 
         $promoSection->save();
@@ -95,7 +97,7 @@ class PromoSectionController extends Controller
         $promoSection->icon_1 = $request->icon_1;
 
         $promoSection->title_2 = $request->title_2;
-        $promoSection->desc_2 = $request->desc_2
+        $promoSection->desc_2 = $request->desc_2;
         $promoSection->icon_2 = $request->icon_2;
 
         if ($request->hasFile('bg_img')) {
@@ -108,7 +110,7 @@ class PromoSectionController extends Controller
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move('public/images/promo-section/', $filename);
-            $promoSection->bg_img = $filename;
+            $promoSection->bg_img = 'public/images/promo-section/'. $filename;
         }
 
         $promoSection->save();

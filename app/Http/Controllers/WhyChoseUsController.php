@@ -14,7 +14,9 @@ class WhyChoseUsController extends Controller
      */
     public function index()
     {
-        return view('backend.content.why_chose_us.index');
+        $whyChoseUs = WhyChoseUs::first();
+
+        return view('backend.content.why_chose_us.index', compact('whyChoseUs'));
     }
 
     /**
@@ -88,6 +90,9 @@ class WhyChoseUsController extends Controller
      */
     public function update(Request $request, WhyChoseUs $whyChoseUs)
     {
+//        dd($request->all());
+
+        $whyChoseUs = WhyChoseUs::first();
 
         $whyChoseUs->icon_1 = $request->icon_1;
         $whyChoseUs->title_1 = $request->title_1;

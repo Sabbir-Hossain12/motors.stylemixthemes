@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Motors Theme Clone</title>
+    <title>{{ env('APP_NAME') }}</title>
+
+    <meta name="description"
+          content="Online shopping in Bangladesh for beauty products, men, women, kids, fashion items, clothes, electronics, home appliances, gadgets, watch, many more.">
+    <meta name="keywords"
+          content="{{ env('APP_NAME') }}, online store bd, online shop bd, Organic fruits, Thai, UK, Korea, China, cosmetics, Jewellery, bags, dress, mobile, accessories, automation Products,">
+
+
+    <meta itemprop="name" content="Best Online Shopping in Bangladesh | {{ env('APP_NAME') }}">
+    <meta itemprop="description"
+          content="Best online shopping in Bangladesh for beauty products, men, women, kids, fashion items, clothes, electronics, home appliances, gadgets, watch, many more.">
+    <meta itemprop="image" content="{{ env('APP_URL') }}public/rankone1.png">
+
+    <meta property="og:url" content="{{ env('APP_URL') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Best Online Shopping in Bangladesh | {{ env('APP_NAME') }}">
+    <meta property="og:description"
+          content="Online shopping in BD for beauty products, men, women, kids, fashion items, clothes, electronics, home appliances, gadgets, watch, many more.">
+    <meta property="og:image" content="{{ env('APP_URL') }}public/rankone1.png">
+    <meta property="image" content="{{ env('APP_URL') }}public/rankone1.png" />
+    <meta property="url" content="{{ env('APP_URL') }}">
+    <meta itemprop="image" content="{{ env('APP_URL') }}public/rankone1.png">
+    <meta property="twitter:card" content="{{ env('APP_URL') }}public/rankone1.png" />
+    <meta property="twitter:title" content="Best Online Shopping in Bangladesh | {{ env('APP_NAME') }}" />
+    <meta property="twitter:url" content="{{ env('APP_URL') }}">
+    <meta name="twitter:image" content="{{ env('APP_URL') }}public/rankone1.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -11,6 +37,8 @@
     <link rel="stylesheet" href="{{ asset('public/webview/assets') }}/carousel/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet"
           href="{{ asset('public/webview/assets') }}/carousel/owlcarousel/assets/owl.theme.default.min.css">
+
+
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
@@ -346,7 +374,7 @@
 
         /*promo section*/
         .promo-section {
-            background-image: url('https://motors.stylemixthemes.com/wp-content/uploads/2020/10/01.jpg?id=2406');
+            background-image: url("{{asset($promo->bg_img)}}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed !important;
@@ -657,6 +685,10 @@
 
         }
     </style>
+
+    {!!$basicinfo->facebook_pixel!!}
+    {!!$basicinfo->google_analytics!!}
+
 </head>
 <body>
 
@@ -920,13 +952,13 @@
                                             </div>
                                         </div>
 
-                                        <hr>
+{{--                                        <hr>--}}
 
-                                        <div class="card-footer mt-2">
-                                            <span><i class="fa fa-road"></i> {{ $product->mileage }}</span>
-                                            <span><i class="fa fa-gas-pump"></i> {{ $product->fuel }}</span>
-                                            <span><i class="fa fa-cog"></i> {{ $product->transmission }}</span>
-                                        </div>
+{{--                                        <div class="card-footer mt-2">--}}
+{{--                                            <span><i class="fa fa-road"></i> {{ $product->mileage }}</span>--}}
+{{--                                            <span><i class="fa fa-gas-pump"></i> {{ $product->fuel }}</span>--}}
+{{--                                            <span><i class="fa fa-cog"></i> {{ $product->transmission }}</span>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </a>
@@ -949,21 +981,19 @@
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="promo-card bg-yellow shadow">
-                    <i class="fa-solid fa-car"></i>
+                    <i class="fa-solid {{ $promo->icon_1 ?? '' }}"></i>
                     <div>
-                        <h4>Are You looking for a car?</h4>
-                        <p>Our cars are delivered fully-registered with all requirements completed. We'll deliver your
-                            car wherever you are.</p>
+                        <h4>{{ $promo->title_1 ?? '' }}</h4>
+                        <p>{{ $promo->desc_1 ?? '' }}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="promo-card bg-red shadow">
-                    <i class="fa-solid fa-dollar-sign"></i>
+                    <i class="fa-solid {{ $promo->icon_2 }}"></i>
                     <div>
-                        <h4>Do You want to sell a car?</h4>
-                        <p>What’s your car worth? Receive the absolute best value for your trade-in vehicle. We even
-                            handle all paperwork. Schedule your appointment today!</p>
+                        <h4>{{ $promo->title_1 ?? '' }}</h4>
+                        <p>{{ $promo->desc_2 }} </p>
                     </div>
                 </div>
             </div>
@@ -1012,12 +1042,12 @@
                                     <div class="sale-price">${{  $firstpro->sizes[0]->SalePrice }}</div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="card-footer mt-2">
-                                <span><i class="fa fa-road"></i> 100</span>
-                                <span><i class="fa fa-gas-pump"></i> 18/26</span>
-                                <span><i class="fa fa-cog"></i> Automatic</span>
-                            </div>
+{{--                            <hr>--}}
+{{--                            <div class="card-footer mt-2">--}}
+{{--                                <span><i class="fa fa-road"></i> 100</span>--}}
+{{--                                <span><i class="fa fa-gas-pump"></i> 18/26</span>--}}
+{{--                                <span><i class="fa fa-cog"></i> Automatic</span>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </a>
@@ -1042,23 +1072,23 @@
          <div class="row text-center justify-content-center">
             <div class="col-md-3 col-sm-6 mb-4 feature-box">
                 <i class="bi bi-tag"></i>
-                <h6>FINANCING MADE EASY</h6>
-                <p>Our stress-free finance department that can find financial solutions to save you money.</p>
+                <h6>{{ $whychose->title_1 ?? '' }}</h6>
+                <p>{{ $whychose->desc_1 ?? '' }}</p>
             </div>
             <div class="col-md-3 col-sm-6 mb-4 feature-box">
                 <i class="bi bi-broadcast"></i>
-                <h6>WIDE RANGE OF BRANDS</h6>
-                <p>With a robust selection of popular vehicles, including leading models from BMW and Ford.</p>
+                <h6>{{ $whychose->title_2 ?? '' }}</h6>
+                <p>{{ $whychose->desc_2 ?? '' }}</p>
             </div>
             <div class="col-md-3 col-sm-6 mb-4 feature-box">
                 <i class="bi bi-chat-dots"></i>
-                <h6>TRUSTED BY THOUSANDS</h6>
-                <p>10 new offers every day. 350 offers on site, trusted by a community of thousands of users.</p>
+                <h6>{{ $whychose->title_3 ?? '' }}</h6>
+                <p>{{ $whychose->desc_3 ?? '' }}</p>
             </div>
             <div class="col-md-3 col-sm-6 mb-4 feature-box">
                 <i class="bi bi-file-earmark-text"></i>
-                <h6>CAR SERVICE & MAINTENANCE</h6>
-                <p>Our service department helps keep your car safe and road-ready for many more years.</p>
+                <h6>{{ $whychose->title_4 ?? '' }}</h6>
+                <p>{{ $whychose->desc_4 ?? '' }}</p>
             </div>
         </div>
 
@@ -1070,103 +1100,20 @@
 <section class="hero-section2">
     <div class="hero-content shadow container">
         <h1>
-            <span style="color: #212529;">CAR DEALERSHIP</span>
-            <span>AUTOMOTIVE WP THEME</span>
+{{--            <span style="color: #212529;">CAR DEALERSHIP</span>--}}
+            <span>{{ $hero->title ?? '' }}</span>
         </h1>
-        <p>
-            With specialists on hand to help with any part of the car shopping or vehicle ownership experience, Motors
-            provides financing, car service and a great selection of vehicles for luxury car shoppers in Chicago, IL.
-            Motors is ultimate Automotive, Car Dealer WordPress theme.
-        </p>
+{{--        <p>--}}
+{{--            With specialists on hand to help with any part of the car shopping or vehicle ownership experience, Motors--}}
+{{--            provides financing, car service and a great selection of vehicles for luxury car shoppers in Chicago, IL.--}}
+{{--            Motors is ultimate Automotive, Car Dealer WordPress theme.--}}
+{{--        </p>--}}
+        {!! $hero->content ?? '' !!}
     </div>
 </section>
 
 {{--Footer--}}
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <!-- Column 1 -->
-            <div class="col-md-3">
-                <h6><span style="color:#4c8cf5;">MOTORS</span> DEALERSHIP</h6>
-                <p>
-                    As the leading dealer in Chicago, we are confident that we will save you time and money. Motors is
-                    ultimate Automotive, Car Dealer WordPress theme.
-                </p>
-            </div>
-
-            <!-- Column 2 -->
-            <div class="col-md-3">
-                <h6>PHOTO GALLERY</h6>
-                <div class="photo-gallery d-flex flex-wrap">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/06-150x150.jpg" alt="">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/04-12-150x150.jpg" alt="">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/03-25-150x150.jpg" alt="">
-                    <img src="https://motors.stylemixthemes.com/wp-content/uploads/2021/03/01-25-150x150.jpg" alt="">
-                </div>
-            </div>
-
-            <!-- Column 3 -->
-            <div class="col-md-3">
-                <h6>LATEST BLOG POSTS</h6>
-                <p>The Tesla Model S isn’t the first truly autonomous car on the road...</p>
-                <a href="#"><i class="fa-regular fa-comments"></i> No Comments</a>
-            </div>
-
-            <!-- Column 4 -->
-            <div class="col-md-3">
-                <h6>SOCIAL NETWORK</h6>
-                <div class="social-icons mt-2">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <hr class="my-4" style="border-color: #444;">
-
-        <div class="row">
-            <!-- Subscribe -->
-            <div class="col-md-3">
-                <h6>SUBSCRIBE</h6>
-                <form class="subscribe-form">
-                    <input type="email" placeholder="Enter your email...">
-                    <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                </form>
-                <small>Get latest updates and offers.</small>
-            </div>
-
-            <!-- Sales Hours -->
-            <div class="col-md-3">
-                <h6>SALES HOURS</h6>
-                <p><strong>Monday - Friday:</strong> 09:00AM - 09:00PM</p>
-                <p><strong>Saturday:</strong> 09:00AM - 07:00PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
-            </div>
-
-            <!-- Service Hours -->
-            <div class="col-md-3">
-                <h6>SERVICE HOURS</h6>
-                <p><strong>Monday - Friday:</strong> 09:00AM - 09:00PM</p>
-                <p><strong>Saturday:</strong> 09:00AM - 07:00PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
-            </div>
-
-            <!-- Parts Hours -->
-            <div class="col-md-3">
-                <h6>PARTS HOURS</h6>
-                <p><strong>Monday - Friday:</strong> 09:00AM - 09:00PM</p>
-                <p><strong>Saturday:</strong> 09:00AM - 07:00PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom mt-4 text-center">
-            Copyright © 2021. Motors – WordPress Theme by StylemixThemes
-        </div>
-    </div>
-</footer>
+@include('webview.partials.footer2')
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -21,10 +21,7 @@ use App\Http\Controllers\GoogleController;
 Route::get('/', [WebviewController::class, 'mainview']);
 Route::get('/old', [WebviewController::class, 'mainview2']);
 
-Route::get('/motor',function ()
-{
-    return view('index');
-});
+
 
 // web view
 Route::get('/datafeed.csv', [WebviewController::class, 'datafeed'])->name('datafeed');

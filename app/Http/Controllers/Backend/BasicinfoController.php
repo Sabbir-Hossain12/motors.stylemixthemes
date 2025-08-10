@@ -45,6 +45,7 @@ class BasicinfoController extends Controller
         $webinfo->ng = $request->ng;
         $webinfo->dbbl = $request->dbbl;
         $webinfo->messanger = $request->messanger;
+        $webinfo->office_hours = $request->office_hours;
         if ($request->logo) {
             if ($webinfo->logo == 'public/webview/assets/images/logo.png') {
             } else {
@@ -57,8 +58,8 @@ class BasicinfoController extends Controller
             $logoImgUrl = $uploadPath . $name;
             $webinfo->logo = $logoImgUrl;
         }
-        
-        if ($request->favicon) { 
+
+        if ($request->favicon) {
             $logof = $request->file('favicon');
             $namef = time() . "_" . $logof->getClientOriginalName();
             $uploadPathf = ('public/images/categorybanner/');
@@ -66,8 +67,8 @@ class BasicinfoController extends Controller
             $logoImgUrlf = $uploadPathf . $namef;
             $webinfo->favicon = $logoImgUrlf;
         }
-        
-        if ($request->page_image) { 
+
+        if ($request->page_image) {
             $logop = $request->file('page_image');
             $namep = time() . "_" . $logop->getClientOriginalName();
             $uploadPathp = ('public/images/categorybanner/');
