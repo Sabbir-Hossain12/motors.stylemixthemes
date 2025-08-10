@@ -643,6 +643,14 @@
         }
 
     }
+    @media (min-width: 767px) {
+
+        .hide-sm {
+            display: none !important;
+        }
+
+    }
+
 </style>
 <!-- Top Contact Bar -->
 
@@ -650,7 +658,7 @@
 <div class="bg-dark text-light py-5 small d-none d-md-block">
     <div class="container d-flex justify-content-between align-items-center">
         <div>
-            <a>
+            <a href="{{ url('/') }}">
                 <img src="{{ asset($basicinfo->logo) }}" alt="Logo" class="me-3"
                      width="138">
             </a>
@@ -661,7 +669,7 @@
                     <i class="fas fa-map-marker-alt me-1"></i>
                 </div>
                 <span>{{ $basicinfo->address }}
-                <a href="#" class="ms-1">
+                <a href="{{ $basicinfo->twitter }}" class="ms-1">
                     View on Map
                 </a></span>
 
@@ -675,7 +683,7 @@
                 <div class="d-flex flex-column">
                     <span class="phone-label">Phone</span>
                     <span class="phone-number heading-font">
-                    <a href="tel:{{ $basicinfo->phone_one }}">
+                    <a href="tel:+88{{ $basicinfo->phone_one }}">
                         {{ $basicinfo->phone_one }}
                     </a>
                     </span>
@@ -707,13 +715,13 @@
     <div class="container justify-content-between align-items-center">
 
         <!-- Logo -->
-        <a class="navbar-brand d-md-none d-sm-block" href="#">
-            <img src="https://motors.stylemixthemes.com/wp-content/uploads/2015/12/logo.svg" width="138" alt="motors logo">
+        <a class="navbar-brand d-md-none d-sm-block" href="{{ url('/') }}">
+            <img src="{{ asset($basicinfo->logo) }}" width="138" alt="motors logo">
         </a>
 
         <!-- Icons on Right -->
-        <div class="d-lg-none d-flex align-items-center gap-3">
-            <a href="#" class="text-white"><i class="fas fa-phone-alt"></i></a>
+        <div class="d-lg-none d-flex align-items-center gap-3 hide-sm">
+            <a href="tel:+88{{$basicinfo->phone_one  }}" class="text-white"><i class="fas fa-phone-alt"></i></a>
             <button class="mobile-menu-toggle btn text-white fs-3 border-0 bg-transparent">
                 <i class="fas fa-bars"></i>
             </button>

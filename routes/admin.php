@@ -445,7 +445,7 @@ Route::group(['middleware' => ['auth.admin:admin']], function () {
     Route::get('admin/product/report/data', [ReportController::class, 'productreportdata']);
 
     //Settings
-    Route::resource('/why-chose-us', WhyChoseUsController::class)->names('why-chose-us');
-    Route::resource('/promo-sections', PromoSectionController::class)->names('promo-sections');
-    Route::resource('/heroes', HeroController::class)->names('heroes');
+    Route::resource('/why-chose-us', WhyChoseUsController::class)->names('admin.why-chose-us');
+    Route::resource('/promo-sections', PromoSectionController::class)->names('admin.promo-sections');
+    Route::resource('/heroes', HeroController::class)->names('admin.heroes');
 });

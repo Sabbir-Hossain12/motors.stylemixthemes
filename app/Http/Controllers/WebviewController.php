@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Addbanner;
+use App\Models\Hero;
+use App\Models\PromoSection;
+use App\Models\WhyChoseUs;
 use Illuminate\Http\Request;
 use App\Models\Information;
 use App\Models\Product;
@@ -185,7 +188,22 @@ class WebviewController extends Controller
 
 //         dd($categoryproducts);
 
-        return view('webview.index', ['categories' => $categories, 'sliders' => $sliders, 'adds' => $adds, 'addbottoms' => $addbottoms, 'topproducts' => $topproducts, 'categoryproducts' => $categoryproducts]);
+        $promo = PromoSection::first();
+        $hero = Hero::first();
+        $whychose = WhyChoseUs::first();
+
+
+
+        return view('webview.index',
+            ['categories' => $categories,
+                'sliders' => $sliders,
+                'adds' => $adds,
+                'addbottoms' => $addbottoms,
+                'topproducts' => $topproducts,
+                'categoryproducts' => $categoryproducts,
+                'promo' => $promo,
+                'hero' => $hero,
+                'whychose' => $whychose,]);
     }
 
     public function mainview2()

@@ -103,7 +103,7 @@ $admin=App\Models\Admin::where('id',Auth::guard('admin')->user()->id)->first();
                     <a href="{{ route('admin.basicinfos.index') }}" class="dropdown-item">Settings</a>
                     <a href="{{ route('admin.promo-sections.index') }}" class="dropdown-item">Promo Section</a>
                     <a href="{{ route('admin.heroes.index') }}" class="dropdown-item">Hero Section</a>
-                    <a href="{{ route('admin.basicinfos.index') }}" class="dropdown-item">Why Chose Us Section</a>
+                    <a href="{{ route('admin.why-chose-us.index') }}" class="dropdown-item">Why Chose Us Section</a>
                     <a href="{{ route('couriers.index') }}" class="dropdown-item">Courier</a>
                     <a href="{{ route('cities.index') }}" class="dropdown-item">City</a>
                     <a href="{{ route('zones.index') }}" class="dropdown-item">Zone</a>
